@@ -5,6 +5,7 @@ import { createProjectPageAnimations } from "./animations/projectAnimations.js";
 import { createTypewriter } from "./animations/typewriter.js";
 import { profile, projects, skills } from "./data/projects.js";
 import bannerVideo from "./media/backgroundTerrainAnimV2.mp4";
+import imgOfMe from "./media/ImgOfMe2.jpg";
 
 // Route registry
 const routes = {
@@ -189,7 +190,7 @@ function renderIntro(root) {
             <span class="portrait-ray portrait-ray--right-one" aria-hidden="true"></span>
             <span class="portrait-ray portrait-ray--right-two" aria-hidden="true"></span>
             <div class="portrait-frame">
-              <span>Portrait Slot</span>
+              <img src=${imgOfMe} alt="An image of Logan Larrondo" class="profile-portrait-img"/>
             </div>
           </figure>
         </div>

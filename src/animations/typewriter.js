@@ -1,4 +1,4 @@
-const DEFAULT_MESSAGES = ["A Creator", "A Developer", "A Problem Solver", "A Leader", "Logan Larrondo"];
+const DEFAULT_MESSAGES = ["A Creator", "A Developer", "An Engineer", "A Designer", "A Leader", "Logan Larrondo"];
 
 export function createTypewriter(target, options = {}) {
   const messages = options.messages ?? DEFAULT_MESSAGES;

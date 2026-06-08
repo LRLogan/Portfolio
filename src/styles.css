@@ -648,24 +648,20 @@ a {
   padding: clamp(28px, 5vw, 56px);
 }
 
+.profile-portrait-img {
+  display: block;
+  width: 100%;
+  max-width: 320px;
+}
+
 .portrait-frame {
   position: relative;
   z-index: 2;
   display: grid;
-  place-items: end start;
+  place-items: center end;
   width: min(100%, 360px);
   min-height: clamp(320px, 42vw, 500px);
   overflow: hidden;
-  border: 1px solid rgba(243, 234, 217, 0.28);
-  border-radius: 0;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.09), transparent 48%),
-    radial-gradient(circle at 50% 34%, rgba(255, 140, 0, 0.14), transparent 32%),
-    rgba(255, 255, 255, 0.045);
-  clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
-  box-shadow:
-    0 24px 72px rgba(0, 0, 0, 0.36),
-    inset 0 0 34px rgba(255, 140, 0, 0.055);
 }
 
 .portrait-frame::before,
@@ -675,23 +671,6 @@ a {
   pointer-events: none;
 }
 
-.portrait-frame::before {
-  inset: 18px;
-  border: 1px dashed rgba(243, 234, 217, 0.18);
-  border-radius: calc(var(--radius) - 2px);
-  clip-path: polygon(12% 0, 100% 0, 88% 100%, 0 100%);
-}
-
-.portrait-frame::after {
-  width: 46%;
-  aspect-ratio: 1;
-  top: 48px;
-  left: 50%;
-  border: 1px solid rgba(243, 234, 217, 0.14);
-  border-radius: 50%;
-  background: rgba(243, 234, 217, 0.07);
-  transform: translateX(-50%);
-}
 
 .portrait-ray {
   position: absolute;
