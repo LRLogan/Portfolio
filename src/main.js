@@ -6,6 +6,7 @@ import { createTypewriter } from "./animations/typewriter.js";
 import { profile, projects, skills } from "./data/projects.js";
 import bannerVideo from "./media/backgroundTerrainAnimV2.mp4";
 import imgOfMe from "./media/ImgOfMe2.jpg";
+import resumePdf from "./media/Logan_Larrondo_Resume_Online.pdf";
 
 // Route registry
 const routes = {
@@ -571,20 +572,56 @@ function renderContact(root) {
       <div class="link-console" aria-label="Contact links">
         <a href="mailto:lrlarrondo1@gmail.com">
           <span>Email</span>
+          <strong>lrlarrondo1@gmail.com</strong>
         </a>
         <a href="https://github.com/LRLogan" target="_blank">
           <span>GitHub</span>
+          <strong>LRLogan</strong>
         </a>
         <a href="https://www.linkedin.com/in/logan-larrondo-12986430b/" target="_blank">
           <span>LinkedIn</span>
+          <strong>Logan Larrondo</strong>
         </a>
-        <a href="#">
+        <button
+          class="resume-toggle"
+          type="button"
+          aria-expanded="false">
           <span>Resume</span>
-          <strong>Add resume link</strong>
+          <strong>View Resume</strong>
+        </button>
+      </div>
+
+      <div class ="resume-container">
+        <a class="resume-download" href="${resumePdf}" download>
+          Download PDF
         </a>
+
+        <div class="resume-panel" aria-hidden="true">
+          <iframe
+            class="resume-viewer"
+            src="${resumePdf}"
+            title="Logan Larrondo Resume"
+          >
+          </iframe>
+        </div>
       </div>
     </section>
   `;
+
+  const resumeButton = root.querySelector(".resume-toggle");
+  const resumePanel = root.querySelector(".resume-panel");
+
+  resumeButton?.addEventListener("click", () => {
+  const isOpen =
+    resumePanel.classList.toggle("is-open");
+
+  resumeButton.setAttribute(
+    "aria-expanded",
+    String(isOpen)
+  );
+
+});
+  
 }
 //#endregion
 
