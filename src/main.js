@@ -160,6 +160,9 @@ function renderIntro(root) {
         <div class="scroll-cue" aria-hidden="true">
           <span></span>
         </div>
+        <div class="banner-about" aria-hidden="true">
+          <button class="banner-info-btn" type="button" data-project-preview-target="${projects[0].id}">Banner info</button>
+        </div>
       </div>
     </section>
 
@@ -167,13 +170,19 @@ function renderIntro(root) {
       <div class="section-shell">
         <div class="section-heading">
           <span class="section-kicker">01 / About</span>
-          <h2>Game developer focused on systems, tools, and playable interfaces.</h2>
+          <h2>Game and simulation developer engineering systems, tools, and experiences.</h2>
         </div>
         <div class="about-grid">
           <div class="about-copy">
             <p class="hero-text">
-              I like building work that has a clear internal system: game mechanics, UI flows, data-backed
-              tools, and experiences where the interface helps the user understand what is happening.
+              I am currently an accelerated Masters student at Rochester Institute of Technology,
+              where I am studying game / simulation design and development, geospatial technologies, 
+              and software engineering in the Golisano Colledge of Computing and Information Sciences. 
+              I have experience in a variety of development roles across the game development pipeline, 
+              with a specialty in source / quality control, build pipelines, and algorithmic programming.
+            </p>
+            <p class="hero-text">
+              My work is motivated by a desire to create engaging, high-quality, and optimized interactive experiences.
             </p>
             <div class="identity-console" aria-label="Animated profile identity">
               <span class="identity-prefix">I am</span>

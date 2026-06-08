@@ -8,7 +8,7 @@
   --muted: #c4bbab;
   --line: rgba(243, 234, 217, 0.22);
   --accent: #f0dcc0;
-  --accent-2: #a9bfd0;
+  --accent-2: #50b9db;
   --accent-hot: #ff8c00;
   --accent-warn: #ffa600;
   --danger: #cf6453;
@@ -412,7 +412,66 @@ a {
   margin-top: 12px;
   border-radius: 999px;
   background: var(--accent-hot);
-  box-shadow: 0 0 20px rgba(128, 255, 184, 0.42);
+  box-shadow: 0 0 20px rgba(255, 202, 128, 0.42);
+}
+
+.banner-about {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 10;
+}
+
+.banner-info-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0.75rem 1.5rem;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+
+  background: rgba(12, 17, 21, 0.7);
+  backdrop-filter: blur(12px);
+
+  color: #f6f7f8;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.banner-info-btn:hover {
+  transform: translateY(-2px);
+
+  border-color: var(--accent-warn);
+
+  background: rgba(18, 24, 30, 0.85);
+
+  box-shadow:
+    0 0 16px rgba(3, 195, 248, 0.25),
+    0 0 32px rgba(255, 157, 0, 0.15);
+}
+
+.banner-info-btn:active {
+  transform: translateY(0);
+}
+
+.banner-info-btn:focus-visible {
+  outline: none;
+  border-color: var(--accent-hot);
+
+  box-shadow:
+    0 0 16px rgba(3, 195, 248, 0.25),
+    0 0 32px rgba(255, 157, 0, 0.15);
 }
 
 /* Intro content panels */
@@ -512,7 +571,7 @@ a {
 }
 
 .project-preview-controls button:hover {
-  border-color: rgba(128, 255, 184, 0.48);
+  border-color: var(--accent-warn);
   color: var(--accent-hot);
   transform: translateY(-2px);
 }
@@ -563,7 +622,7 @@ a {
 }
 
 .project-preview-card:hover {
-  border-color: rgba(128, 255, 184, 0.45);
+  border-color: var(--accent-hot);
   transform: translateY(-5px);
 }
 
@@ -1178,6 +1237,7 @@ h2 {
 }
 
 .project-card {
+  scroll-margin-top: 6rem;
   display: grid;
   grid-template-columns: minmax(360px, 1.18fr) minmax(0, 0.82fr);
   gap: 28px;
@@ -1186,7 +1246,7 @@ h2 {
 }
 
 .project-card.is-targeted {
-  border-color: rgba(128, 255, 184, 0.5);
+  border-color: var(--accent-hot);
   box-shadow:
     var(--shadow),
     0 0 0 1px rgba(128, 255, 184, 0.18),

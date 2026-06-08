@@ -6,8 +6,28 @@ import tmoIntroPic from "../media/TMOIntroPic.png";
 import ccropsIntroPic from "../media/CCropsIntroPic.png";
 import fruitNinjaIntroPic from "../media/FruitNinjaIntroPic.png";
 import questRandIntroPic from "../media/QuestRandIntroImg.png";
+import wireframeIntroPic from "../media/WireframeVisIntroImg.png";
+import imgComingSoon from "../media/ImgComingSoon.png";
 
 export const projects = [
+  {
+    id: "Wireframe-Heightmap-Visualizer",
+    title: "Wireframe Heightmap Visualizer",
+    role: "Personal project",
+    summary:
+      "An extension of my procedural enviorment generator project to create a wireframe heightmap visualizer that can be used in various applications. " +
+      "Optimized with GPU instancing this project was made to be robust and self sufficient, with the ability to be used as a standalone program or easily integrated into other projects. " +
+      "The visualizer can read in various types of heightmap data from CSV files to textures and images, and display it at a customizable resolution and scale.",
+    mediaType: "image",
+    media: wireframeIntroPic,
+    tags: ["C#", "Unity", "Procedural generation", "Algorithms", "Game AI", "GPU instancing"],
+    details:
+      "Use this space for the project story: the problem, your design choices, implementation details, screenshots, links, and lessons learned.",
+    links: [
+      { label: "Repository", href: "https://github.com/LRLogan/IGME560/tree/main/Final%20proj/IGME560%20Final%20Proj" },
+      { label: "Live Demo", href: "#" }
+    ]
+  },
   {
     id: "Procedural-Enviorment-Generator",
     title: "Procedural Enviorment Generator",
@@ -17,8 +37,8 @@ export const projects = [
       " complete with custom noise terrain, L-System trees, and a custom procedural triplanar shader." +
       " While this project is still in development to polish and add features, the core architecture" +
       " is built to be optimized, expandable and maintainable.",
-    mediaType: "interface",
-    media: null,
+    mediaType: "image",
+    media: imgComingSoon,
     tags: ["C#", "Unity", "Procedural generation", "Algorithms", "Game AI"],
     details:
       "Use this space for the project story: the problem, your design choices, implementation details, screenshots, links, and lessons learned.",
@@ -167,8 +187,8 @@ export const projects = [
       " that conform to the terrain’s surface, custom agent vision system, and two " +
       "Autonomous agents. Each of these agents use a sum of behaviors as they interact " +
       "with the world to generate a direction vector.",
-    mediaType: "simulation",
-    media: null,
+    mediaType: "image",
+    media: imgComingSoon,
     tags: ["Unity", "C#", "Autonomous agent behavior", "Game AI"],
     details:
       "The expanded project view can grow into a richer feature area with additional media, architecture notes, metrics, and process screenshots.",
