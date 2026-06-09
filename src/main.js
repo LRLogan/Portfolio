@@ -414,7 +414,8 @@ function renderProjects(root) {
       <span class="banner-code">// Projects</span>
       <h1>Choose a build</h1>
       <p>
-        Large cinematic project slots give each build room for media, a concise pitch, and an expandable case-study panel.
+        Here are some of my more notible projects. Some personal, some academic, and some variations of the two, 
+        but all of them were learning experiances that taught me new technologies, strategies, and or methodologies.
       </p>
     </section>
 
@@ -477,17 +478,21 @@ function renderProjectDetail(project) {
   const detailSections = [
     {
       heading: "Project Goal",
-      body: project.details
-    },
-    {
-      heading: "Implementation Notes",
-      body: `Core areas to document here: ${project.tags.join(", ")}. This section is ready for systems, designs, and implementations notes.`
-    },
-    {
-      heading: "Media Showcase",
-      body: "Use this area for screenshots, short clips, diagrams, or process images that explain the build beyond the preview card."
+      body: project.goals
     }
   ];
+
+  project.notes.forEach((section) => {
+    detailSections.push({
+      heading: section.heading,
+      body: section.body
+    });
+  });
+
+  detailSections.push({
+    heading: "Media Showcase",
+    body: "Use this area for screenshots, short clips, diagrams, or process images that explain the build beyond the preview card."
+  });
 
   return `
     <div class="project-detail-grid">
