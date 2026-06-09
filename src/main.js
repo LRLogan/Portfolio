@@ -7,6 +7,7 @@ import { profile, projects, skills } from "./data/projects.js";
 import bannerVideo from "./media/backgroundTerrainAnimV2.mp4";
 import imgOfMe from "./media/ImgOfMe2.jpg";
 import resumePdf from "./media/Logan_Larrondo_Resume_Online.pdf";
+import imgComingSoon from "./media/ImgComingSoon.png";
 
 // Route registry
 const routes = {
@@ -467,7 +468,7 @@ function renderProjectCard(project) {
       <div class="project-detail" id="${project.id}-detail" hidden>
         ${renderProjectDetail(project)}
         <div class="project-links">
-          ${project.links.map((link) => `<a href="${link.href}" target="_blank">${link.label}</a>`).join("")}
+          ${project.links.map((link) => `<a href="${link.href}" target="_blank" class="basic-info-btn">${link.label}</a>`).join("")}
         </div>
       </div>
     </article>
@@ -515,7 +516,7 @@ function renderProjectDetail(project) {
 
 function renderProjectDetailMedia(project, index) {
   if (project.mediaType === "image" && project.media) {
-    return `<img src="${project.media}" alt="" class="project-detail-image project-detail-image--${index}" />`;
+    return `<img src="${imgComingSoon}" alt="" class="project-detail-image project-detail-image--${index}" />`;
   }
 
   return `<span class="project-detail-placeholder project-detail-placeholder--${index}"></span>`;
@@ -600,7 +601,7 @@ function renderContact(root) {
 
       <div class ="resume-container">
         <div class="resume-panel" aria-hidden="true">
-          <a class="resume-download resume-info-btn" href="${resumePdf}" download>
+          <a class="resume-download basic-info-btn" href="${resumePdf}" download>
             Download Resume as PDF
           </a>
           <iframe
