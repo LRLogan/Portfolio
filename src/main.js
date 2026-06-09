@@ -582,21 +582,20 @@ function renderContact(root) {
           <span>LinkedIn</span>
           <strong>Logan Larrondo</strong>
         </a>
-        <button
+        <a
           class="resume-toggle"
           type="button"
           aria-expanded="false">
           <span>Resume</span>
           <strong>View Resume</strong>
-        </button>
+        </a>
       </div>
 
       <div class ="resume-container">
-        <a class="resume-download" href="${resumePdf}" download>
-          Download PDF
-        </a>
-
         <div class="resume-panel" aria-hidden="true">
+          <a class="resume-download" href="${resumePdf}" download>
+            Download PDF
+          </a>
           <iframe
             class="resume-viewer"
             src="${resumePdf}"
