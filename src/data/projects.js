@@ -22,7 +22,7 @@ export const projects = [
     media: wireframeIntroPic,
     tags: ["C#", "Unity", "Procedural generation", "Algorithms", "Game AI", "GPU instancing"],
     details:
-      "Use this space for the project story: the problem, your design choices, implementation details, screenshots, links, and lessons learned.",
+      "Goal and overarching problem statement along with personal role and contributions.",
     links: [
       { label: "Repository", href: "https://github.com/LRLogan/IGME560/tree/main/Final%20proj/IGME560%20Final%20Proj" },
       { label: "Live Demo", href: "#" }
@@ -41,7 +41,7 @@ export const projects = [
     media: imgComingSoon,
     tags: ["C#", "Unity", "Procedural generation", "Algorithms", "Game AI"],
     details:
-      "Use this space for the project story: the problem, your design choices, implementation details, screenshots, links, and lessons learned.",
+      "Goal and overarching problem statement along with personal role and contributions.",
     links: [
       { label: "Repository", href: "https://github.com/LRLogan/IGME560/tree/main/Final%20proj/IGME560%20Final%20Proj" },
       { label: "Live Demo", href: "#" }
@@ -59,7 +59,7 @@ export const projects = [
     media: lidarIntroImg,
     tags: ["Unity", "Anaconda", "ArcGIS Pro", "ArcGIS Online", "GIS"],
     details:
-      "Use this space for the project story: the problem, your design choices, implementation details, screenshots, links, and lessons learned.",
+      "Goal and overarching problem statement along with personal role and contributions.",
     links: [
       { label: "Repository", href: "https://storymaps.arcgis.com/stories/5c43ddafc91447228485b2308499539a" },
       { label: "Live Demo", href: "#" }
@@ -78,7 +78,7 @@ export const projects = [
     media: mcdIntroImg,
     tags: ["C#", "SQLite", "Git", "CLI", "Algorithms"],
     details:
-      "Use this space for the project story: the problem, your design choices, implementation details, screenshots, links, and lessons learned.",
+      "Goal and overarching problem statement along with personal role and contributions.",
     links: [
       { label: "Repository", href: "https://github.com/LRLogan/MC-Dungeons-Ancient-Tracker"},
       { label: "Live Demo", href: "#" }
@@ -96,7 +96,7 @@ export const projects = [
     media: trafficVisualIntroPic,
     tags: ["C#", "data organization", "ArcGIS SDK", "Unity", "GIS"],
     details:
-      "The expanded project view can grow into a richer feature area with additional media, architecture notes, metrics, and process screenshots.",
+      "Goal and overarching problem statement along with personal role and contributions.",
     links: [
       { label: "Repository", href: "#" },
       { label: "Case Study", href: "#" }
@@ -114,7 +114,7 @@ export const projects = [
     media: ggkIntroPic,
     tags: ["C#", "Unity", "Git", "Teamwork", "Team leadership", "Game des / dev"],
     details:
-      "The expanded project view can grow into a richer feature area with additional media, architecture notes, metrics, and process screenshots.",
+      "Goal and overarching problem statement along with personal role and contributions.",
     links: [
       { label: "Repository", href: "https://github.com/Nicky-Nice-Games/ggk-UnityProject" },
       { label: "Game website", href: "https://nickynicegames.com/ggk/home" }

@@ -235,7 +235,7 @@ function renderIntro(root) {
       <div class="skills-intro">
         <span class="section-kicker">03 / Skills</span>
         <h2 id="skills-title">Skills</h2>
-        <p>Grouped like an equipment screen: each rail moves on its own cadence so the stack feels alive without becoming noisy.</p>
+        <p>Skills that I have accumulated through my experience and continuous learning.</p>
       </div>
       <div class="skill-carousel-stack" data-skill-carousels>
         ${skillCategories.map(renderSkillCategory).join("")}
@@ -481,10 +481,10 @@ function renderProjectDetail(project) {
     },
     {
       heading: "Implementation Notes",
-      body: `Core areas to document here: ${project.tags.join(", ")}. This section is ready for systems notes, design constraints, and what you personally owned.`
+      body: `Core areas to document here: ${project.tags.join(", ")}. This section is ready for systems, designs, and implementations notes.`
     },
     {
-      heading: "Showcase Media",
+      heading: "Media Showcase",
       body: "Use this area for screenshots, short clips, diagrams, or process images that explain the build beyond the preview card."
     }
   ];
@@ -565,7 +565,7 @@ function renderContact(root) {
         <span class="banner-code">// Links</span>
         <h1>Contact</h1>
         <p>
-          This page is ready for your GitHub, LinkedIn, resume, email, and any long-term hosting links.
+          Click on these links to find me around the web, or copy my email to get in touch. You can also view or download my resume from here.
         </p>
       </div>
 
