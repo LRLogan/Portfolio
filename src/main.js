@@ -248,7 +248,7 @@ function renderIntro(root) {
         <div class="github-copy">
           <span class="section-kicker">04 / Development Pulse</span>
           <h2>Development pulse</h2>
-          <p class="hero-text">A wider contribution-style view that has room to breathe.</p>
+          <p class="hero-text">My Github contribution activity over the last year.</p>
         </div>
         <div class="github-activity" aria-label="GitHub activity graph">
           ${renderGithubActivity()}
