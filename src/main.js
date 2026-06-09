@@ -179,7 +179,7 @@ function renderIntro(root) {
             <p class="hero-text">
               I am currently an accelerated Masters student at Rochester Institute of Technology,
               where I am studying game / simulation design and development, geospatial technologies, 
-              and software engineering in the Golisano Colledge of Computing and Information Sciences. 
+              and software engineering in the Golisano College of Computing and Information Sciences. 
               I have experience in a variety of development roles across the game development pipeline, 
               with a specialty in source / quality control, build pipelines, and algorithmic programming.
             </p>
