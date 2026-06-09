@@ -570,9 +570,11 @@ function renderContact(root) {
       </div>
 
       <div class="link-console" aria-label="Contact links">
-        <a href="mailto:lrlarrondo1@gmail.com">
+        <a class="contact-copy-email"
+          type="button"
+          data-email="lrlarrondo1@gmail.com">
           <span>Email</span>
-          <strong>lrlarrondo1@gmail.com</strong>
+          <strong>lrlarrondo1@gmail.com (Click to copy)</strong>
         </a>
         <a href="https://github.com/LRLogan" target="_blank">
           <span>GitHub</span>
@@ -593,8 +595,8 @@ function renderContact(root) {
 
       <div class ="resume-container">
         <div class="resume-panel" aria-hidden="true">
-          <a class="resume-download" href="${resumePdf}" download>
-            Download PDF
+          <a class="resume-download resume-info-btn" href="${resumePdf}" download>
+            Download Resume as PDF
           </a>
           <iframe
             class="resume-viewer"
@@ -606,6 +608,23 @@ function renderContact(root) {
       </div>
     </section>
   `;
+
+  const copyEmailButton = root.querySelector(".contact-copy-email");
+
+copyEmailButton?.addEventListener("click", async () => {
+  try {
+    await navigator.clipboard.writeText("lrlarrondo1@gmail.com");
+
+    const label = copyEmailButton.querySelector("strong");
+    label.textContent = "Copied!";
+
+    setTimeout(() => {
+      label.textContent = "lrlarrondo1@gmail.com (Click to copy)";
+    }, 2000);
+  } catch (error) {
+    console.error("Failed to copy email:", error);
+  }
+});
 
   const resumeButton = root.querySelector(".resume-toggle");
   const resumePanel = root.querySelector(".resume-panel");
