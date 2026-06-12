@@ -15,7 +15,7 @@ export const projects = [
     title: "Wireframe Heightmap Visualizer",
     role: "Personal project",
     summary:
-      "An extension of my procedural enviorment generator project to create a wireframe heightmap visualizer that can be used in various applications. " +
+      "An extension of my procedural environment generator project to create a wireframe heightmap visualizer that can be used in various applications. " +
       "Optimized with GPU instancing this project was made to be robust and self sufficient, with the ability to be used as a standalone program or easily integrated into other projects. " +
       "The visualizer can read in various types of heightmap data from CSV files to textures and images, and display it at a customizable resolution and scale.",
     mediaType: "image",
@@ -23,7 +23,7 @@ export const projects = [
     tags: ["C#", "Unity", "Procedural generation", "Algorithms", "Game AI", "GPU instancing"],
     goals:
       "With the ambition of growing my procedural terrain generator into a larger project, I wanted to provide the user with an alternate visualization of the heightmap data. " +
-      "Doubeling as an eye catching piece of media for my portfolio, I set out to create a robust and self sufficient program to read in various types of heightmap data and display it in a wireframe format. ",
+      "Doubling as an eye catching piece of media for my portfolio, I set out to create a robust and self sufficient program to read in various types of heightmap data and display it in a wireframe format. ",
     notes: [
       {heading: "Proof of Concept", body: "I already had sources of heightmap generation including my previous procedural terrain generator project, so I was able to get right into development " + 
         "of the wireframe mesh and animation pipeline. I started by instantiating spheres at each vertex point and cylinders to connect them. " +
@@ -32,9 +32,9 @@ export const projects = [
         "This allowed me to achieve the same result with a much larger heightmap without any performance issues. " },
         {heading: "Animation", body: "With the core functionality of the visualizer working, I wanted to add a simple animation to make it more visually appealing with the ability for the program to smoothly transition between maps. " +
           "To keep my program optimized I had built a modular and low dependency architecture, thus I was simply able to create some logic to lerp between the current heightmap and the next one, " + 
-          "to then at each frame update the translation matrix of each edge, and feed that new data to the GPU to create the new instance."},
+          "to then at each frame update the translation matrix of each edge, and feed that new data to the GPU to create the new instance. "},
         {heading: "Expansion", body: "With my program now working as intended I wanted to make sure it can be used on its own or easily integrated into other projects. " +
-          "To do this I simply generalized the input data into multple forms supported by method overloading. Additionally I added the the functionality to read in height map data from images and CSV files. " +
+          "To do this I simply generalized the input data into multiple forms supported by method overloading. Additionally I added the the functionality to read in height map data from images and CSV files. " +
           "With these new additions working, you can observe the result in the banner of this portfolio. Two maps created from my procedural terrain generator, one from a CSV file, and one from an image."}
     ],
     links: [
@@ -42,11 +42,11 @@ export const projects = [
     ]
   },
   {
-    id: "Procedural-Enviorment-Generator",
-    title: "Procedural Enviorment Generator",
-    role: "Personal / Acedemic algorithem project",
+    id: "Procedural-Environment-Generator",
+    title: "Procedural Environment Generator",
+    role: "Personal / Academic algorithm project",
     summary:
-      "An academic research project turned personal passion project to create a procedural enviorment generator" + 
+      "An academic research project turned personal passion project to create a procedural environment generator" + 
       " complete with custom noise terrain, L-System trees, and a custom procedural triplanar shader." +
       " While this project is still in development to polish and add features, the core architecture" +
       " is built to be optimized, expandable and maintainable.",
@@ -87,10 +87,10 @@ export const projects = [
     title: "Ancient Tracker CLI",
     role: "CLI and database personal project",
     summary:
-      "I created a command line interface project to solve a problem I was facing while playing a game." + 
-      "My program tokenizes user input and will query a database I wrote to preform various tasks. The core " +
+      "I created a command line interface project to solve a problem I was facing while playing a game. " + 
+      "My program tokenizes user input and will query a database I wrote to perform various tasks. The core " +
       "command that I created as the main purpose of the program uses a simple greedy search algorithm to make" +
-      " a best fit selection to recommend to the user",
+      " a best fit selection to recommend to the user.",
     mediaType: "image",
     media: mcdIntroImg,
     tags: ["C#", "SQLite", "Git", "CLI", "Algorithms"],
@@ -147,13 +147,13 @@ export const projects = [
   {
     id: "TMOTOFOG",
     title: "The Murder of That One Frog Over There",
-    role: "Academic game design and dev poject",
+    role: "Academic game design and dev project",
     summary:
-      "The murder of that one frog over there is a group project that I create the " +
+      "The Murder of That One Frog Over There is a group project that I created the " +
       "structure for in order to fulfill the requirements of creating a game for our class." + 
       "\n" + 
-      "Fallowing the Agile process of Scrum, I lead my team, keeping them organized, delegating" +
-      " tasks, and managing our Git repository. I also contribute quality code, creating" +
+      "Fallowing the agile process of Scrum, I lead my team keeping them organized, delegating" +
+      " tasks, and managing our Git repository. I also contributed quality code, creating" +
       " features in our game to accomplish various tasks like player movement, inventory " +
       "and interaction systems, game managers, and save data.",
     mediaType: "image",
@@ -172,9 +172,9 @@ export const projects = [
   {
     id: "Crazy-Crops",
     title: "Crazy Crops",
-    role: "Academic game design and dev poject",
+    role: "Academic game design and dev project",
     summary:
-      "A tabletop card game created in both physical form and Tabletop simulator where you " +
+      "A tabletop card game created in both physical form and Tabletop Simulator where you " +
       "race to earn points and sabotage opponents in a fast paced card strategy game. This " +
       "was created with a small team from brainstorming to user testing to final product.",
     mediaType: "image",
@@ -194,8 +194,8 @@ export const projects = [
     role: "Academic project",
     summary:
       "I created my own version of the game Fruit ninja that utilizes design patterns " +
-      "like Object pooling and singletons to create an optimized game that uses vector " +
-      "forces, Ray casts, and non-even random distribution.",
+      "like object pooling and singletons to create an optimized game that uses vector " +
+      "forces, ray casts, and non-even random distribution.",
     mediaType: "image",
     media: fruitNinjaIntroPic,
     tags: ["Unity", "C#"],
@@ -213,9 +213,9 @@ export const projects = [
     title: "NPC-World",
     role: "Academic project",
     summary:
-      "NPC World showcases Perlin noise generated terrain, randomly placed obstacles," +
+      "NPC World showcases Perlin noise generated terrain, randomly placed obstacles" +
       " that conform to the terrain’s surface, custom agent vision system, and two " +
-      "Autonomous agents. Each of these agents use a sum of behaviors as they interact " +
+      "Autonomous Agents. Each of these agents use a sum of behaviors as they interact " +
       "with the world to generate a direction vector.",
     mediaType: "image",
     media: imgComingSoon,
