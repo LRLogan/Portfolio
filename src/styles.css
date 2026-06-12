@@ -845,7 +845,7 @@ h2 {
 .secondary-action,
 .project-toggle {
   min-height: 44px;
-  border: 1px solid rgba(243, 234, 217, 0.26);
+  border: 1px solid var(--accent-hot);
   border-radius: var(--radius);
   cursor: pointer;
   font-size: 0.86rem;
@@ -865,6 +865,12 @@ h2 {
   padding: 0 16px;
   background: rgba(255, 255, 255, 0.08);
   color: var(--text);
+}
+
+.primary-action:hover,
+.secondary-action:hover,
+button.project-toggle:hover {
+  border-color: var(--accent-2);
 }
 
 .status-panel {
