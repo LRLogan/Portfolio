@@ -438,6 +438,7 @@ function renderProjects(root) {
   });
 
   initProjectPageAnimations(root);
+  initProjectSectionToggles(root);
 }
 
 // Project card helpers
@@ -479,39 +480,74 @@ function renderProjectDetail(project) {
   const detailSections = [
     {
       heading: "Project Goal",
-      body: project.goals
+      body: project.goals,
+      collapsable: false
     }
   ];
 
   project.notes.forEach((section) => {
     detailSections.push({
       heading: section.heading,
-      body: section.body
+      body: section.body,
+      collapsable: section.collapsable ?? true
     });
   });
 
   detailSections.push({
     heading: "Media Showcase",
-    body: "Use this area for screenshots, short clips, diagrams, or process images that explain the build beyond the preview card."
+    body: "Use this area for screenshots, short clips, diagrams, or process images that explain the build beyond the preview card.",
+    collapsable: false
   });
 
   return `
-    <div class="project-detail-grid">
-      ${detailSections.map((section, index) => `
+  <div class="project-detail-grid">
+  ${detailSections.map((section, index) => {
+
+    if (!section.collapsable) {
+      return `
         <article class="project-detail-section">
           <h3>${section.heading}</h3>
+
           <div class="project-detail-row">
             <div class="project-detail-copy">
               <p>${section.body}</p>
             </div>
+
             <div class="project-detail-media" aria-hidden="true">
               ${renderProjectDetailMedia(project, index)}
             </div>
           </div>
         </article>
-      `).join("")}
-    </div>
-  `;
+      `;
+    }
+
+    return `
+      <article class="project-detail-section">
+        <button
+          class="project-section-toggle"
+          type="button"
+          aria-expanded="false"
+        >
+          <h3>${section.heading}</h3>
+          <span class="toggle-icon">+</span>
+        </button>
+
+        <div class="project-section-content" hidden>
+          <div class="project-detail-row">
+            <div class="project-detail-copy">
+              <p>${section.body}</p>
+            </div>
+
+            <div class="project-detail-media" aria-hidden="true">
+              ${renderProjectDetailMedia(project, index)}
+            </div>
+          </div>
+        </div>
+      </article>
+    `;
+  }).join("")}
+</div>
+`;
 }
 
 function renderProjectDetailMedia(project, index) {
@@ -520,6 +556,27 @@ function renderProjectDetailMedia(project, index) {
   }
 
   return `<span class="project-detail-placeholder project-detail-placeholder--${index}"></span>`;
+}
+
+function initProjectSectionToggles(root) {
+  root.querySelectorAll(".project-section-toggle").forEach((button) => {
+    const content =
+      button.parentElement.querySelector(".project-section-content");
+
+    button.addEventListener("click", () => {
+      const isOpen = button.getAttribute("aria-expanded") === "true";
+
+      button.setAttribute(
+        "aria-expanded",
+        String(!isOpen)
+      );
+
+      content.hidden = isOpen;
+
+      const icon = button.querySelector(".toggle-icon");
+      icon.textContent = isOpen ? "+" : "−";
+    });
+  });
 }
 
 function scrollToPendingProject(activeRoute) {

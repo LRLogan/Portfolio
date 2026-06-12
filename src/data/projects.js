@@ -25,15 +25,15 @@ export const projects = [
       "With the ambition of growing my procedural terrain generator into a larger project, I wanted to provide the user with an alternate visualization of the heightmap data. " +
       "Doubling as an eye catching piece of media for my portfolio, I set out to create a robust and self sufficient program to read in various types of heightmap data and display it in a wireframe format. ",
     notes: [
-      {heading: "Proof of Concept", body: "I already had sources of heightmap generation including my previous procedural terrain generator project, so I was able to get right into development " + 
+      {collapsable: false, heading: "Proof of Concept", body: "I already had sources of heightmap generation including my previous procedural terrain generator project, so I was able to get right into development " + 
         "of the wireframe mesh and animation pipeline. I started by instantiating spheres at each vertex point and cylinders to connect them. " +
         "Using this with a small heightmap I was able to achieve a working prototype, however this proved inefficient when it came to larger heightmaps. " + 
         "To solve this I slightly refactored my code to have an optional checkbox to use the spheres and more importantly drop object instantiation in favor for GPU instancing. " + 
         "This allowed me to achieve the same result with a much larger heightmap without any performance issues. " },
-        {heading: "Animation", body: "With the core functionality of the visualizer working, I wanted to add a simple animation to make it more visually appealing with the ability for the program to smoothly transition between maps. " +
+        {collapsable: false, heading: "Animation", body: "With the core functionality of the visualizer working, I wanted to add a simple animation to make it more visually appealing with the ability for the program to smoothly transition between maps. " +
           "To keep my program optimized I had built a modular and low dependency architecture, thus I was simply able to create some logic to lerp between the current heightmap and the next one, " + 
           "to then at each frame update the translation matrix of each edge, and feed that new data to the GPU to create the new instance. "},
-        {heading: "Expansion", body: "With my program now working as intended I wanted to make sure it can be used on its own or easily integrated into other projects. " +
+        {collapsable: false, heading: "Expansion", body: "With my program now working as intended I wanted to make sure it can be used on its own or easily integrated into other projects. " +
           "To do this I simply generalized the input data into multiple forms supported by method overloading. Additionally I added the the functionality to read in height map data from images and CSV files. " +
           "With these new additions working, you can observe the result in the banner of this portfolio. Two maps created from my procedural terrain generator, one from a CSV file, and one from an image."}
     ],
@@ -56,7 +56,11 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {heading: "TBD", body: "TBD" }
+      {collapsable: false, heading: "Goal", body: "Starting with the scope of a 3 week final project, I set out to create an interactive procedural environment generator " +
+        "with custom noise generation, L-System trees, and a custom shader. I wanted to create a visually appealing environment that could be used in various applications such as games, simulations, or even just as a creative coding project. " +
+        "During the 3 week process I was able to accomplish all of these goals with one caveat, and with the core architecture built to be optimized, expandable and maintainable, I have continued development on this project as a personal passion project to add features and polish. " + 
+        "The caveat being that the triplanar shader did not achieve the quality I was aiming for. But none the less I now have a strong foundation to work off of for improvements." },
+        {collapsable: true, heading: "Noise Generation", body: ""}
     ],
     links: [
       { label: "Repository", href: "https://github.com/LRLogan/IGME560/tree/main/Final%20proj/IGME560%20Final%20Proj" }
@@ -76,7 +80,7 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {heading: "TBD", body: "TBD" }
+      {collapsable: false, heading: "TBD", body: "TBD" }
     ],
     links: [
       { label: "Repository", href: "https://storymaps.arcgis.com/stories/5c43ddafc91447228485b2308499539a" }
@@ -97,7 +101,7 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {heading: "TBD", body: "TBD" }
+      {collapsable: false, heading: "TBD", body: "TBD" }
     ],
     links: [
       { label: "Repository", href: "https://github.com/LRLogan/MC-Dungeons-Ancient-Tracker"}
@@ -117,7 +121,7 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {heading: "TBD", body: "TBD" }
+      {collapsable: false, heading: "TBD", body: "TBD" }
     ],
     links: [
       { label: "Repository", href: "https://github.com/LRLogan/IGME689/tree/main/NewProj/IGME689" }
@@ -137,7 +141,7 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {heading: "TBD", body: "TBD" }
+      {collapsable: false, heading: "TBD", body: "TBD" }
     ],
     links: [
       { label: "Repository", href: "https://github.com/Nicky-Nice-Games/ggk-UnityProject" },
@@ -162,7 +166,7 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {heading: "TBD", body: "TBD" }
+      {collapsable: false, heading: "TBD", body: "TBD" }
     ],
     links: [
       { label: "Repository", href: "https://github.com/LRLogan/320-Game-project" },
@@ -183,7 +187,7 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {heading: "TBD", body: "TBD" }
+      {collapsable: false, heading: "TBD", body: "TBD" }
     ],
     links: [
     ]
@@ -202,7 +206,7 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {heading: "TBD", body: "TBD" }
+      {collapsable: false, heading: "TBD", body: "TBD" }
     ],
     links: [
       { label: "Game on Itch.io", href: "https://lrlogan.itch.io/fruit-ninja" }
@@ -223,7 +227,7 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {heading: "TBD", body: "TBD" }
+      {collapsable: false, heading: "TBD", body: "TBD" }
     ],
     links: [
     ]
@@ -243,7 +247,7 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {heading: "TBD", body: "TBD" }
+      {collapsable: false, heading: "TBD", body: "TBD" }
     ],
     links: [
       { label: "Repository", href: "https://github.com/LRLogan/PersonalTests/tree/main/MiscTests/YemenMansionQuestRndomizer" }

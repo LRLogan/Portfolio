@@ -1454,6 +1454,40 @@ h2 {
   aspect-ratio: auto;
 }
 
+.project-section-toggle {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  background: transparent;
+  border: none;
+
+  color: inherit;
+
+  padding: 0;
+
+  cursor: pointer;
+
+  text-align: left;
+}
+
+.project-section-toggle h3 {
+  margin: 0;
+}
+
+.toggle-icon {
+  font-size: 1.5rem;
+  font-weight: 700;
+
+  transition: transform 0.2s ease;
+}
+
+.project-section-toggle[aria-expanded="true"] .toggle-icon {
+  transform: rotate(180deg);
+}
+
 /* Contact */
 .project-links,
 .link-console {
