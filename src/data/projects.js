@@ -60,7 +60,107 @@ export const projects = [
         "with custom noise generation, L-System trees, and a custom shader. I wanted to create a visually appealing environment that could be used in various applications such as games, simulations, or even just as a creative coding project. " +
         "During the 3 week process I was able to accomplish all of these goals with one caveat, and with the core architecture built to be optimized, expandable and maintainable, I have continued development on this project as a personal passion project to add features and polish. " + 
         "The caveat being that the triplanar shader did not achieve the quality I was aiming for. But none the less I now have a strong foundation to work off of for improvements." },
-        {collapsable: true, heading: "Noise Generation", body: ""}
+        {collapsable: true, heading: "Noise Generation", body: "The terrain generation is split into three overarching processes: noise generation, map creation and manipulation, " +
+          "and mesh generation. These processes along with the biome / splat map assignments make up the entirety of the terrain generation pipeline, keeping all other components of the simulation like trees out of the question." + 
+        "<br></br>" +
+        "Noise generation's core behavior is using Fractional Brownian Motion to create a summation of continuous, layered noise fields. It uses math to determine a single point in space according to the input values of the FbM. It performs " +
+        "multiple calculations to synthesize the direct values that are given to the raw height map including a smoothstep and fractional functions to create smooth, continuous terrain that influences later generated values. " +
+        "<br></br>" +
+        "In the map creation and manipulation process the raw heights are given to a compiler function to apply cliff logic, distortions in the methodology of Domain Warping, and replacing the values in the height map with these " +
+        "newly modified ones. This is also where a call to generate the texture is located. In a more optimized version of the program this texture generation process would happen in parallel with the mesh generation which is also called from here. " +
+        "<br></br>" +
+        "Finally in the mesh generation stage of the pipeline, these new height values are passed to a mesh generation function that creates the triangles that will make up the mesh and will then connect them. " +
+        "Once this is finished the texture is assigned and the terrain generation is complete. "
+      },
+      {collapsable: true, heading: "L-System Tree Generation", body: 
+        "Tree generation is completely isolated from the terrain generated pipeline, and only relies on the existence of the finalized height map, thus could also be run in parallel to the shader creation for an optimized version, but for safety and simplicity it is called in the scene manager after " +
+        "the terrain generation pipeline if finished. The TreeGen script has four main regions: Grid surveying, Tree creation using L-Systems, Mesh generation, and some helper methods / classes to hold valuable data for the generation algorithms. " + 
+        "<br></br>" +
+        "First a simple perlin noise map is generated and overlaid onto the height map. This overlay is broken into grids with a parameter size (more on this later in clever implementations) and an average value is taken for each cell.This value is then given to the corresponding " + 
+        "vertices on the heightmap, multiplied by a density modifier, and later used to place that amount of trees in the sector. With these values now calculated, the height map is checked for suitable spawn locations in that sector from a given rule set. Once a spot is picked the L-System tree creation can begin, and repeat until all sectors have been populated with the designated amount of trees. " + 
+        "<br></br>" +
+        "There is a set of L-System rules declared and set in the file that hold tree patterns the generator can randomly choose from. Similarly to the L-System presented in class this adaptation builds the string of rules, dispatches them and performs transformations and additions accordingly. " +
+        "The key difference being that my system is both in 3D and uses splines to create the tree structure. Once this tree structure is created, mesh generation takes over." + 
+        "<br></br>" +
+        "While the code for this mesh generation is far more complex than the mesh generation for the terrain, the explanation is rather simple. Each segment of the tree referred to as a branch is generated as a cylinder with a given radius. This radius is also deteriorating according to distance " +
+        "rules for some additional realism, and controlled by a constant float value. These meshes are then given a parent and texture. " + 
+        "<br></br>" +
+        "As mentioned there are some helper classes / methods, but they mostly just serve the purpose of data containers with simple functionality." 
+      },
+      {collapsable: true, heading: "Biome and Splat map Generation", body:
+        "From being called in the middle of the terrain generation pipeline, this sub process assures biometric values are assigned to each terrain vertex as well as texture weights used in the shadergraph. The end goal of this pipeline is to create a splat map that contains the weighted texture values. " +
+        "To do this, the SplatMapGen script simply samples biometric values generated by BiomeGen to correlate those values to texture values based upon a set of specified rules in order to create a weight for said texture. At the end, all the values for the different textures are added together for each " + 
+        "vertex and assigned to the corresponding height map vertex. This is the data passed into the shadergraph to actually construct the shader. "
+      },
+      {collapsable: true, heading: "Clever implementations", body:
+        "In terms of clever implementations, there are two noteworthy mentions." +
+        "<br></br>" +
+        "First there is the derivative based FbM created by Inigo Quilez. Instead of simply returning a height value for the vertex on the height map at a given index, this configuration allows for an integrated calculation of both the slope and derivative of the vertex. Although ultimately overridden in the Domain Warping process, this raw value can be useful in the future, " +
+        "such as influencing the Domain Warp algorithm, something I would like to incorporate in a later variation of the project. Also thanks to Inigo’s great notes it was a rather effortless implementation." +
+        "<br></br>" +
+        "Secondly is a process for scattering trees that I had created while brainstorming a good solution. This system simply uses an overlay grid on the overlay perlin noise, breaking it up into cells. While at a super low grid scale, average values will appear to blend together, creating minimal unique distribution, and at super high values the noise and height map resolution " +
+        "may seem pixel for pixel, creating a very realistic distribution, this system allows for interpolation between the two extremes. Thus allowing developers to hand select both the desired attributes native with perlin noise like resolution and frequency, and from this system, the fidelity to the noise patterns."
+      },
+      { collapsable: true, heading: "Resources / Reference Materials", body: `
+        Throughout development I relied on a combination of research papers, technical articles, tutorials, and open-source projects to better understand procedural generation techniques, terrain synthesis, L-Systems, domain warping, and terrain texturing workflows. The following resources were particularly influential during development:
+        <br></br>
+        • Procedural generation visualization and debugging techniques:
+        <br>
+        <a href="https://www.youtube.com/watch?v=Y19Mw5YsgjI" target="_blank">
+          Procedural Generation Fixes and Visualization
+        </a>
+        <br></br>
+        • Fractal Brownian Motion (FBM), Domain Warping, and foundational procedural noise research by Inigo Quilez:
+        <br>
+        <a href="https://iquilezles.org/articles/fbm/" target="_blank">
+          FBM Article
+        </a>
+        <br>
+        <a href="https://iquilezles.org/articles/warp/" target="_blank">
+          Domain Warping Article
+        </a>
+        <br>
+        <a href="https://iquilezles.org/" target="_blank">
+          Inigo Quilez Website
+        </a>
+        <br></br>
+        • Terrain generation and painting workflows:
+        <br>
+        <a href="https://www.youtube.com/watch?v=BFld4EBO2RE" target="_blank">
+          FBM and Terrain Painting
+        </a>
+        <br></br>
+        • L-System theory and procedural plant generation:
+        <br>
+        <a href="https://scispace.com/pdf/the-algorithmic-beauty-of-plants-4f9yunhil9.pdf" target="_blank">
+          The Algorithmic Beauty of Plants
+        </a>
+        <br></br>
+        • Practical implementation of spline-based L-System branches:
+        <br>
+        <a href="https://www.youtube.com/watch?v=Sf6k6kvpRu4" target="_blank">
+          Using Splines with L-Systems
+        </a>
+        <br></br>
+        • Turtle graphics implementation for Lindenmayer systems:
+        <br>
+        <a href="https://www.fraculation.com/blog/lindenmayer-implementation" target="_blank">
+          Lindenmayer System Implementation
+        </a>
+        <br></br>
+        • Terrain splatmapping and texture blending:
+        <br>
+        <a href="https://www.youtube.com/watch?v=uYIygCqId2Y" target="_blank">
+          Splatmap Tutorial
+        </a>
+        <br><br>
+        • Additional inspiration discovered later in development:
+        <br>
+        <a href="https://wiskered.itch.io/terraforge" target="_blank">
+          TerraForge
+        </a>
+        <br></br>
+  `}
     ],
     links: [
       { label: "Repository", href: "https://github.com/LRLogan/IGME560/tree/main/Final%20proj/IGME560%20Final%20Proj" }

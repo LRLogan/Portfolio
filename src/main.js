@@ -535,7 +535,7 @@ function renderProjectDetail(project) {
         <div class="project-section-content" hidden>
           <div class="project-detail-row">
             <div class="project-detail-copy">
-              <p>${section.body}</p>
+              <p class="project-detail-body">${section.body}</p>
             </div>
 
             <div class="project-detail-media" aria-hidden="true">

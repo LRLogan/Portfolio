@@ -1423,6 +1423,28 @@ h2 {
   background-size: 28px 28px, 28px 28px, auto;
 }
 
+.project-detail-body a {
+  display: inline-block;
+
+  margin-top: 4px;
+  padding: 4px 10px;
+
+  border: 1px solid var(--accent-hot);
+  border-radius: 999px;
+
+  color: var(--accent-warn);
+  text-decoration: none;
+
+  transition: all 0.2s ease;
+}
+
+.project-detail-body a:hover {
+  
+  border-color: var(--accent-2);
+
+  transform: translateY(-1px);
+}
+
 .project-image,
 .project-video {
   width: 100%;
