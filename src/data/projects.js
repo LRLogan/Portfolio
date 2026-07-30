@@ -474,6 +474,10 @@ export const skills = [
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/anaconda/anaconda-original.svg"
   },
   {
+    name: "Fedora",
+    logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fedora/fedora-original.svg"
+  },
+  {
     name: "Github Actions",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg"
   }

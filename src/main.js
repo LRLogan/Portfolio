@@ -54,7 +54,8 @@ const skillCategories = [
       "Docker",
       "Windows",
       "Linux",
-      "Anaconda"
+      "Anaconda",
+      "Fedora"
     ])
   },
   {
