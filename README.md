@@ -17,3 +17,4 @@ npm run preview
 ```
 
 The local dev server is configured for `http://127.0.0.1:5173/` by default.
+The site is up at https://lrlogan.github.io/Portfolio/
