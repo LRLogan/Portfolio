@@ -173,14 +173,26 @@ export const projects = [
     summary:
       "A project on researching use cases, creating and implementing a pipeline for using LiDAR data to create terrain in a game engine. " +
       "As part of my GIS mapping class I created this pipeline to demonstrate its capabilities and integration with ArcGIS. " +
-      "If you have an ArcGIS account you can view the story map, you can also create one for free :)",
+      "If you have an ArcGIS account you can view the story map, you can also create one for free :)" + 
+      "<br></br>" + 
+      "A summary of development notes is provided below.",
     mediaType: "image",
     media: lidarIntroImg,
     tags: ["Unity", "Anaconda", "ArcGIS Pro", "ArcGIS Online", "GIS"],
     goals:
-      "Goal and overarching problem statement along with personal role and contributions.",
+      "The goal of this project was to research and create a development pipeline " + 
+      "for integrating real world LiDAR data into a game engine. I wa able to successfully " + 
+      "complete this project within about 2 weeks.",
     notes: [
-      {collapsable: false, heading: "TBD", body: "TBD" }
+      {collapsable: true, heading: "Overview", 
+        body: "LiDAR has many uses throughout many industries, and In Game and Simulation design " + 
+        "and development it has been used to take 3D scans of real environments and import them into a digital world, " + 
+        "model characters and props, and much more. As an added benefit, it speeds up production pipelines with seamless " + 
+        "integration and can be done with high enough precision to produce hyper-realistic detail." + 
+        "<br></br>" + 
+        "For the purpose of this project we will just focus on the use case of using the data to digitally reconstruct real world terrain." 
+      }
+
     ],
     links: [
       { label: "Repository", href: "https://storymaps.arcgis.com/stories/5c43ddafc91447228485b2308499539a" }
@@ -201,7 +213,7 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {collapsable: false, heading: "TBD", body: "TBD" }
+      //{collapsable: false, heading: "TBD", body: "TBD" }
     ],
     links: [
       { label: "Repository", href: "https://github.com/LRLogan/MC-Dungeons-Ancient-Tracker"}
@@ -221,7 +233,7 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {collapsable: false, heading: "TBD", body: "TBD" }
+      //{collapsable: false, heading: "TBD", body: "TBD" }
     ],
     links: [
       { label: "Repository", href: "https://github.com/LRLogan/IGME689/tree/main/NewProj/IGME689" }
@@ -241,7 +253,7 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {collapsable: false, heading: "TBD", body: "TBD" }
+      //{collapsable: false, heading: "TBD", body: "TBD" }
     ],
     links: [
       { label: "Repository", href: "https://github.com/Nicky-Nice-Games/ggk-UnityProject" },
@@ -266,7 +278,7 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {collapsable: false, heading: "TBD", body: "TBD" }
+      //{collapsable: false, heading: "TBD", body: "TBD" }
     ],
     links: [
       { label: "Repository", href: "https://github.com/LRLogan/320-Game-project" },
@@ -287,7 +299,7 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {collapsable: false, heading: "TBD", body: "TBD" }
+      //{collapsable: false, heading: "TBD", body: "TBD" }
     ],
     links: [
     ]
@@ -306,7 +318,7 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {collapsable: false, heading: "TBD", body: "TBD" }
+      //{collapsable: false, heading: "TBD", body: "TBD" }
     ],
     links: [
       { label: "Game on Itch.io", href: "https://lrlogan.itch.io/fruit-ninja" }
@@ -327,7 +339,7 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {collapsable: false, heading: "TBD", body: "TBD" }
+      //{collapsable: false, heading: "TBD", body: "TBD" }
     ],
     links: [
     ]
@@ -347,7 +359,7 @@ export const projects = [
     goals:
       "Goal and overarching problem statement along with personal role and contributions.",
     notes: [
-      {collapsable: false, heading: "TBD", body: "TBD" }
+      //{collapsable: false, heading: "TBD", body: "TBD" }
     ],
     links: [
       { label: "Repository", href: "https://github.com/LRLogan/PersonalTests/tree/main/MiscTests/YemenMansionQuestRndomizer" }
