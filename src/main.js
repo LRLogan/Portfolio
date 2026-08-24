@@ -6,7 +6,7 @@ import { createTypewriter } from "./animations/typewriter.js";
 import { profile, projects, skills } from "./data/projects.js";
 import bannerVideo from "./media/backgroundTerrainAnimV2.mp4";
 import imgOfMe from "./media/ImgOfMe2.jpg";
-import resumePdf from "./media/Logan_Larrondo_Resume_Online.pdf";
+import resumePdf from "./media/Larrondo_Logan_Resume.pdf";
 import imgComingSoon from "./media/ImgComingSoon.png";
 
 // Route registry
@@ -350,13 +350,14 @@ function renderSkill(skill) {
 
 function renderProjectPreviewCard(project) {
   return `
+  <div class="project-preview-wrapper" >
     <button class="project-preview-card" type="button" data-project-preview-target="${project.id}">
       <div class="project-media project-${project.mediaType}">
         ${renderProjectMedia(project)}
       </div>
-      <span class="project-preview-title">${project.title}</span>
     </button>
-  `;
+    <span class="project-preview-title">${project.title}</span>
+  </div>`;
 }
 //#endregion
 

@@ -621,6 +621,26 @@ a {
     transform 180ms ease;
 }
 
+.project-preview-wrapper {
+  position: relative;
+  display: grid;
+  flex: 0 0 clamp(220px, 28vw, 360px);
+  min-height: clamp(260px, 34vw, 390px);
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(243, 234, 217, 0.18);
+  border-radius: var(--radius);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text);
+  cursor: default;
+  scroll-snap-align: start;
+  text-align: left;
+  box-shadow: var(--shadow);
+  transition:
+    border-color 180ms ease,
+    transform 180ms ease;
+}
+
 .project-preview-card:hover {
   border-color: var(--accent-hot);
   transform: translateY(-5px);
@@ -654,7 +674,7 @@ a {
 .project-preview-title {
   position: relative;
   z-index: 1;
-  align-self: end;
+  align-self:end;
   padding: 22px;
   font-size: clamp(1.1rem, 2vw, 1.45rem);
   font-weight: 950;
