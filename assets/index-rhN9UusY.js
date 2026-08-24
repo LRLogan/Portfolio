@@ -240,13 +240,14 @@ Fallowing the agile process of Scrum, I lead my team keeping them organized, del
       <span>${e.name}</span>
     </li>
   `}function fr(e){return`
+  <div class="project-preview-wrapper" >
     <button class="project-preview-card" type="button" data-project-preview-target="${e.id}">
       <div class="project-media project-${e.mediaType}">
         ${Dr(e)}
       </div>
-      <span class="project-preview-title">${e.title}</span>
     </button>
-  `}function pr(){Kn&&=(Kn.stop(),null)}function mr(){Kn=t(document.querySelector(`.contour-background`))}function hr(){qn&&=(qn.stop(),null)}function gr(e){qn=un(e)}function _r(){Jn&&=(Jn.stop(),null)}function vr(e){Jn=xn(e)}function yr(){Yn&&=(Yn.stop(),null)}function br(){let e=document.querySelector(`#typewriter`);e&&(Yn=Dn(e))}function xr(e){e.innerHTML=`
+    <span class="project-preview-title">${e.title}</span>
+  </div>`}function pr(){Kn&&=(Kn.stop(),null)}function mr(){Kn=t(document.querySelector(`.contour-background`))}function hr(){qn&&=(qn.stop(),null)}function gr(e){qn=un(e)}function _r(){Jn&&=(Jn.stop(),null)}function vr(e){Jn=xn(e)}function yr(){Yn&&=(Yn.stop(),null)}function br(){let e=document.querySelector(`#typewriter`);e&&(Yn=Dn(e))}function xr(e){e.innerHTML=`
     <section class="page-heading project-heading">
       <span class="banner-code">// Projects</span>
       <h1>Choose a build</h1>
