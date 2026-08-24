@@ -1389,6 +1389,15 @@ button.project-toggle:hover {
   text-transform: uppercase;
 }
 
+.project-detail-section h4 {
+  color: var(--accent);
+}
+
+.project-detail-section a {
+  color: var(--accent-2);
+  text-decoration: underline;
+}
+
 .project-detail-row {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(240px, 0.42fr);

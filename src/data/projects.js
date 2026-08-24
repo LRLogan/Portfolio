@@ -175,7 +175,7 @@ export const projects = [
       "As part of my GIS mapping class I created this pipeline to demonstrate its capabilities and integration with ArcGIS. " +
       "If you have an ArcGIS account you can view the story map, you can also create one for free :)" + 
       "<br></br>" + 
-      "A summary of development notes is provided below.",
+      "A simplified summary of development notes is provided below.",
     mediaType: "image",
     media: lidarIntroImg,
     tags: ["Unity", "Anaconda", "ArcGIS Pro", "ArcGIS Online", "GIS"],
@@ -184,13 +184,58 @@ export const projects = [
       "for integrating real world LiDAR data into a game engine. I wa able to successfully " + 
       "complete this project within about 2 weeks.",
     notes: [
-      {collapsable: true, heading: "Overview", 
+      {collapsable: true, heading: "Overview of LiDAR", 
         body: "LiDAR has many uses throughout many industries, and In Game and Simulation design " + 
         "and development it has been used to take 3D scans of real environments and import them into a digital world, " + 
         "model characters and props, and much more. As an added benefit, it speeds up production pipelines with seamless " + 
         "integration and can be done with high enough precision to produce hyper-realistic detail." + 
         "<br></br>" + 
         "For the purpose of this project we will just focus on the use case of using the data to digitally reconstruct real world terrain." 
+      },
+      {collapsable: true, heading: "My Process", 
+        body: "In this section of the project I will document, share, and explain my process and results I encounter while going through " + 
+        "one of many pipelines of creating terrain in game engine that accurately represents real world terrain from LiDAR data." + 
+        "<h4>Data acquisition and preparation</h4>" + 
+        `Data was procured through the USGS free data source downloader. Found <a href="https://apps.nationalmap.gov/downloader/" target="_blank">here</a>` + 
+        "After searching for a general area and filtering by data type I found a LAZ file holding a point cloud of some terrain. " + 
+        "Before importing into Unity I wanted to ensure my data was prepared so I converted the LAZ file to a LASD format " + 
+        "in order to visualize it in ArcGIS Pro." + 
+        "<br></br>" + 
+        "Once this point cloud is set up the next step is to create a DEM in order to isolate the raw terrain data. It can be difficult to see at times but if " + 
+        "zoomed in on the correct locations the point cloud holds foliage data most notably trees, something we do not want to effect the DEM." + 
+        "<br></br>" + 
+        "Creating the DEM is as simple as filtering out all points that are not the ground, and rasterizing the data." + 
+        "<h4>Core pipeline</h4>" + 
+        "These next processes were the most challenging as I had to do quite a bit of experimenting on what would work." + 
+        "Now that I have the DEM I needed to port that raw data into Unity, and the first thing to note is that to directly " + 
+        "import a file into a Unity terrain object, it requires that data to be in a RAW file format.  However converting the " + 
+        "DEM into such a format is not a direct process when using ArcGIS Pro. This is because ArcGIS Pro transforms raw height " + 
+        "data behind the scenes in terms of normalizing, conforming to different coordinate spaces, and stretches data to show a " + 
+        "clean visualization. None of which are stored in the raw data, so I had to preform these manipulations by hand in order " + 
+        "to keep the fidelity of the terrain across software." + 
+        "The final process went as detailed below." + 
+        "<br></br>" + 
+        "Copy as TIFF" + 
+        "This first step copied the raw date from the DEM and saved it in a TIFF file format where I can save the height data inside as larger 32 bit unsigned integers." + 
+        "<br></br>" + 
+        "Scale / Normalize" +
+        "Due to the raw values being very small (in the range of 1 to1 * 10^-5) I needed to scale them up to be classified as valid terrain heights while still " + 
+        "being normalized so the fallowing equation was used: ('DEM' - minValue) / (maxValue - minValue) * scale" +
+        "<br></br>" + 
+        "Export as TIFF" +
+        "ArcGIS does not natively support exporting raster data in a RAW format so I exported the scaled / normalized data as a TIFF file holding 16 bit unsigned " + 
+        "integers (what Unity desires for a terrain object" + 
+        "<br></br>" + 
+        "Convert to RAW" + 
+        "Now that the TIFF file holds all the needed data, the last step in this process was converting the TIFF file into a RAW file. For this an external tool " + 
+        "must be used. My choice was using a built in tool in Anaconda (a python source distribution with many built in features). By using the GDAL package I " + 
+        "was able to quickly both verify the file contents as well as convert it to a RAW format." + 
+        "<br></br>" + 
+        "<h4>Importing into Unity and creating the terrain</h4>" +
+        "With a RAW file ready to go I set up a new Unity scene with an empty terrain object." + 
+        "<br></br>" + 
+        "After some value tweaking I was then left with the untextured, terrain in the scene. This marked a large milestone of the overall process as " + 
+        "I had successfully taken real world terrain data through LiDAR and recreated it in Unity"
       }
 
     ],
