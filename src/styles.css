@@ -681,6 +681,8 @@ a {
   line-height: 1.08;
   text-transform: uppercase;
   text-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+  background:
+    linear-gradient(90deg, rgba(255, 140, 0, 0.12), rgba(7, 162, 245, 0.04));
 }
 
 .glass-panel,
