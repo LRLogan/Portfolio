@@ -537,5 +537,9 @@ export const skills = [
   {
     name: "Github Actions",
     logo: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg"
+  },
+  {
+    name: "GitKraken",
+    logo: "https://cdn.jsdelivr.net/gh/glincker/thesvg@main/public/icons/gitkraken/default.svg"
   }
 ];

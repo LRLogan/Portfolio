@@ -31,7 +31,7 @@ const skillCategories = [
     label: "Source Control",
     speed: 24000,
     direction: "forward",
-    skills: getSkillsByName(["GitHub", "Git", "Gitlab", "Github Actions"])
+    skills: getSkillsByName(["GitHub", "Git", "Gitlab", "Github Actions", "GitKraken"])
   },
   {
     label: "Languages & Data",
