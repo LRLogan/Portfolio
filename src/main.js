@@ -3,11 +3,10 @@ import { createContourBackground } from "./animations/contourBackground.js";
 import { createIntroAnimations } from "./animations/introAnimations.js";
 import { createProjectPageAnimations } from "./animations/projectAnimations.js";
 import { createTypewriter } from "./animations/typewriter.js";
-import { profile, projects, skills } from "./data/projects.js";
+import { featuredProjectIds, profile, projectCategories, projects, skills } from "./data/projects.js";
 import bannerVideo from "./media/backgroundTerrainAnimV2.mp4";
 import imgOfMe from "./media/ImgOfMe2.jpg";
 import resumePdf from "./media/Larrondo_Logan_Resume.pdf";
-import imgComingSoon from "./media/ImgComingSoon.png";
 
 // Route registry
 const routes = {
@@ -21,9 +20,8 @@ let contourBackground = null;
 let introAnimations = null;
 let projectPageAnimations = null;
 let typewriterAnimation = null;
-let pendingProjectTarget = null;
 const hasConfiguredGithub = profile.githubUsername !== "your-github-username";
-const PROJECT_PREVIEW_SCROLL_AMOUNT = 360;
+const projectsById = new Map(projects.map((project) => [project.id, project]));
 
 // Skill groupings for the intro carousel section
 const skillCategories = [
@@ -68,8 +66,8 @@ const skillCategories = [
 
 // Routing helpers
 function getRoute() {
-  const route = window.location.hash.replace("#", "");
-  return routes[route] ? route : "intro";
+  const route = window.location.hash.slice(1).split("/")[0];
+  return Object.hasOwn(routes, route) ? route : "intro";
 }
 
 function setRoute(route) {
@@ -116,7 +114,7 @@ function renderFooter() {
 }
 
 // re-render listener for page change
-function render() {
+function render(event) {
   clearContourBackground();
   clearIntroAnimations();
   clearProjectPageAnimations();
@@ -126,7 +124,7 @@ function render() {
   routes[activeRoute](document.querySelector("#page"));
   initContourBackground();
   window.scrollTo(0, 0);
-  scrollToPendingProject(activeRoute);
+  if (event) document.querySelector("#page").focus({ preventScroll: true });
 }
 
 //#region Intro page
@@ -163,8 +161,8 @@ function renderIntro(root) {
         <div class="scroll-cue" aria-hidden="true">
           <span></span>
         </div>
-        <div class="banner-about" aria-hidden="true">
-          <button class="banner-info-btn" type="button" data-project-preview-target="${projects[0].id}">Banner info</button>
+        <div class="banner-about">
+          <a class="banner-info-btn" href="${getProjectHref("Wireframe-Heightmap-Visualizer")}">Banner info</a>
         </div>
       </div>
     </section>
@@ -213,22 +211,13 @@ function renderIntro(root) {
       <div class="section-shell">
         <div class="project-preview-heading">
           <div>
-            <span class="section-kicker">02 / Project Preview</span>
-            <h2 id="project-preview-title">Select a project</h2>
+            <span class="section-kicker">02 / Portfolio</span>
+            <h2 id="project-preview-title">Selected work</h2>
           </div>
-          <div class="project-preview-controls" aria-label="Project preview controls">
-            <button type="button" data-preview-scroll="left" aria-label="Scroll project previews left">
-              <span aria-hidden="true">&lt;</span>
-            </button>
-            <button type="button" data-preview-scroll="right" aria-label="Scroll project previews right">
-              <span aria-hidden="true">&gt;</span>
-            </button>
-          </div>
+          <a class="secondary-action" href="#projects">Browse all projects <span aria-hidden="true">↗</span></a>
         </div>
-        <div class="project-preview-window">
-          <div class="project-preview-track" data-project-preview-track>
-            ${projects.map(renderProjectPreviewCard).join("")}
-          </div>
+        <div class="project-preview-grid">
+          ${featuredProjectIds.map((id) => renderProjectPreviewCard(projectsById.get(id))).join("")}
         </div>
       </div>
     </section>
@@ -266,30 +255,9 @@ function renderIntro(root) {
       document.querySelector(button.dataset.scrollTarget)?.scrollIntoView({ behavior: "smooth" });
     });
   });
-  initProjectPreviewCarousel(root);
 
   initTypewriter();
   initIntroAnimations(root);
-}
-
-// Project preview carousel on the intro page
-function initProjectPreviewCarousel(root) {
-  const track = root.querySelector("[data-project-preview-track]");
-  if (!track) return;
-
-  root.querySelectorAll("[data-preview-scroll]").forEach((button) => {
-    button.addEventListener("click", () => {
-      const direction = button.dataset.previewScroll === "left" ? -1 : 1;
-      track.scrollBy({ left: PROJECT_PREVIEW_SCROLL_AMOUNT * direction, behavior: "smooth" });
-    });
-  });
-
-  root.querySelectorAll("[data-project-preview-target]").forEach((button) => {
-    button.addEventListener("click", () => {
-      pendingProjectTarget = button.dataset.projectPreviewTarget;
-      setRoute("projects");
-    });
-  });
 }
 
 function renderGithubActivity() {
@@ -348,16 +316,25 @@ function renderSkill(skill) {
   `;
 }
 
+function getProjectHref(id) {
+  const category = projectCategories.find(({ projectIds }) => projectIds.includes(id));
+  return `#projects/${category.id}/${id}`;
+}
+
 function renderProjectPreviewCard(project) {
+  const category = projectCategories.find(({ projectIds }) => projectIds.includes(project.id));
+
   return `
-  <div class="project-preview-wrapper" >
-    <button class="project-preview-card" type="button" data-project-preview-target="${project.id}">
-      <div class="project-media project-${project.mediaType}">
-        ${renderProjectMedia(project)}
+    <a class="project-preview-card" href="${getProjectHref(project.id)}">
+      <img src="${project.media}" alt="" loading="lazy" width="640" height="400" />
+      <div class="project-preview-copy">
+        <span class="section-kicker">${category.title}</span>
+        <h3>${project.title}</h3>
+        <p>${project.summary}</p>
+        <span class="project-preview-action">Read case study <span aria-hidden="true">↗</span></span>
       </div>
-    </button>
-    <span class="project-preview-title">${project.title}</span>
-  </div>`;
+    </a>
+  `;
 }
 //#endregion
 
@@ -412,18 +389,27 @@ function initTypewriter() {
 
 //#region Projects page
 function renderProjects(root) {
+  const [, categoryId, projectId] = window.location.hash.slice(1).split("/");
+  const category = projectCategories.find(({ id }) => id === categoryId) ?? projectCategories[0];
+  const targetId = category.projectIds.includes(projectId) ? projectId : null;
+
   root.innerHTML = `
     <section class="page-heading project-heading">
-      <span class="banner-code">// Projects</span>
-      <h1>Choose a build</h1>
-      <p>
-        Here are some of my more notible projects. Some personal, some academic, and some variations of the two, 
-        but all of them were learning experiances that taught me new technologies, strategies, and or methodologies.
-      </p>
+      <span class="section-kicker">Portfolio / Project library</span>
+      <h1>Explore by discipline</h1>
+      <p>Choose an area to see the projects most relevant to your role and how I built them.</p>
     </section>
 
-    <section class="project-grid" aria-label="Project list">
-      ${projects.map(renderProjectCard).join("")}
+    <nav class="project-categories" aria-label="Project disciplines">
+      ${projectCategories.map((item, index) => renderProjectCategory(item, index, category)).join("")}
+    </nav>
+
+    <section class="project-grid" aria-labelledby="project-category-title">
+      <header class="project-category-heading">
+        <h2 id="project-category-title">${category.title}</h2>
+        <span>${category.projectIds.length} projects</span>
+      </header>
+      ${category.projectIds.map((id) => renderProjectCard(projectsById.get(id), id === targetId)).join("")}
     </section>
   `;
 
@@ -434,26 +420,52 @@ function renderProjects(root) {
     toggle.addEventListener("click", () => {
       const isOpen = card.classList.toggle("is-open");
       toggle.setAttribute("aria-expanded", String(isOpen));
-      toggle.textContent = isOpen ? "Collapse Project" : "Expand Project";
+      toggle.textContent = isOpen ? "Close case study" : "Read case study";
       detail.hidden = !isOpen;
     });
   });
 
   initProjectPageAnimations(root);
-  initProjectSectionToggles(root);
+
+  if (targetId) {
+    const target = document.getElementById(targetId);
+    requestAnimationFrame(() => {
+      if (!target.isConnected) return;
+      target.querySelector(".project-toggle").focus({ preventScroll: true });
+      target.scrollIntoView({ block: "start" });
+    });
+  }
 }
 
-// Project card helpers
-function renderProjectCard(project) {
+function renderProjectCategory(category, index, activeCategory) {
+  const isActive = category === activeCategory;
   return `
-    <article class="project-card" id="${project.id}" data-project-reveal>
-      <div class="project-media project-${project.mediaType}">
-        ${renderProjectMedia(project)}
-      </div>
+    <a class="project-category-link" href="#projects/${category.id}" ${isActive ? 'aria-current="page"' : ""}>
+      <span class="section-kicker" aria-hidden="true">0${index + 1} / Discipline</span>
+      <strong>${category.title}</strong>
+      <span class="project-category-description">${category.description}</span>
+      <span class="project-category-arrow" aria-hidden="true">↗</span>
+    </a>
+  `;
+}
+
+function renderProjectCard(project, isOpen) {
+  return `
+    <article
+      class="project-card${project.media ? "" : " project-card--text"}${isOpen ? " is-open" : ""}"
+      id="${project.id}"
+      aria-labelledby="${project.id}-title"
+      ${isOpen ? "" : "data-project-reveal"}
+    >
+      ${project.media ? `
+        <div class="project-media project-${project.mediaType}">
+          ${renderProjectMedia(project)}
+        </div>
+      ` : ""}
 
       <div class="project-content">
         <div class="project-kicker">${project.role}</div>
-        <h2>${project.title}</h2>
+        <h3 id="${project.id}-title">${project.title}</h3>
         <p>${project.summary}</p>
         <ul class="tag-list">
           ${project.tags.map((tag) => `<li>${tag}</li>`).join("")}
@@ -461,136 +473,51 @@ function renderProjectCard(project) {
         <button
           class="project-toggle"
           type="button"
-          aria-expanded="false"
+          aria-expanded="${isOpen}"
           aria-controls="${project.id}-detail"
         >
-          Expand Project
+          ${isOpen ? "Close case study" : "Read case study"}
         </button>
       </div>
 
-      <div class="project-detail" id="${project.id}-detail" hidden>
-        ${renderProjectDetail(project)}
-        <div class="project-links">
-          ${project.links.map((link) => `<a href="${link.href}" target="_blank" class="basic-info-btn">${link.label}</a>`).join("")}
-        </div>
-      </div>
+      <section class="project-detail" id="${project.id}-detail" aria-labelledby="${project.id}-process" ${isOpen ? "" : "hidden"}>
+        <header class="project-detail-intro">
+          <span class="section-kicker">Case study / Project brief</span>
+          <h4 id="${project.id}-process">From goal to implementation</h4>
+          <p>${project.goals}</p>
+        </header>
+        <ol class="project-process" role="list">
+          ${project.process.map((step, index) => `
+            <li>
+              <span class="project-step-number" aria-hidden="true">0${index + 1}</span>
+              <div>
+                <h5>${step.heading}</h5>
+                <p>${step.body}</p>
+              </div>
+            </li>
+          `).join("")}
+        </ol>
+        ${project.notes?.length ? `
+          <details class="project-notes">
+            <summary>Technical notes</summary>
+            <div class="project-notes-content">
+              ${project.notes.map((note) => `
+                <section>
+                  <h5>${note.heading}</h5>
+                  <div>${note.body}</div>
+                </section>
+              `).join("")}
+            </div>
+          </details>
+        ` : ""}
+        ${project.links.length ? `
+          <div class="project-links">
+            ${project.links.map((link) => `<a href="${link.href}" target="_blank" rel="noopener" class="basic-info-btn">${link.label} <span aria-hidden="true">↗</span></a>`).join("")}
+          </div>
+        ` : ""}
+      </section>
     </article>
   `;
-}
-
-function renderProjectDetail(project) {
-  const detailSections = [
-    {
-      heading: "Project Goal",
-      body: project.goals,
-      collapsable: false
-    }
-  ];
-
-  project.notes.forEach((section) => {
-    detailSections.push({
-      heading: section.heading,
-      body: section.body,
-      collapsable: section.collapsable ?? true
-    });
-  });
-
-  detailSections.push({
-    heading: "Media Showcase",
-    body: "Use this area for screenshots, short clips, diagrams, or process images that explain the build beyond the preview card.",
-    collapsable: false
-  });
-
-  return `
-  <div class="project-detail-grid">
-  ${detailSections.map((section, index) => {
-
-    if (!section.collapsable) {
-      return `
-        <article class="project-detail-section">
-          <h3>${section.heading}</h3>
-
-          <div class="project-detail-row">
-            <div class="project-detail-copy">
-              <p>${section.body}</p>
-            </div>
-
-            <div class="project-detail-media" aria-hidden="true">
-              ${renderProjectDetailMedia(project, index)}
-            </div>
-          </div>
-        </article>
-      `;
-    }
-
-    return `
-      <article class="project-detail-section">
-        <button
-          class="project-section-toggle"
-          type="button"
-          aria-expanded="false"
-        >
-          <h3>${section.heading}</h3>
-          <span class="toggle-icon">+</span>
-        </button>
-
-        <div class="project-section-content" hidden>
-          <div class="project-detail-row">
-            <div class="project-detail-copy">
-              <p class="project-detail-body">${section.body}</p>
-            </div>
-
-            <div class="project-detail-media" aria-hidden="true">
-              ${renderProjectDetailMedia(project, index)}
-            </div>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join("")}
-</div>
-`;
-}
-
-function renderProjectDetailMedia(project, index) {
-  if (project.mediaType === "image" && project.media) {
-    return `<img src="${imgComingSoon}" alt="" class="project-detail-image project-detail-image--${index}" />`;
-  }
-
-  return `<span class="project-detail-placeholder project-detail-placeholder--${index}"></span>`;
-}
-
-function initProjectSectionToggles(root) {
-  root.querySelectorAll(".project-section-toggle").forEach((button) => {
-    const content =
-      button.parentElement.querySelector(".project-section-content");
-
-    button.addEventListener("click", () => {
-      const isOpen = button.getAttribute("aria-expanded") === "true";
-
-      button.setAttribute(
-        "aria-expanded",
-        String(!isOpen)
-      );
-
-      content.hidden = isOpen;
-
-      const icon = button.querySelector(".toggle-icon");
-      icon.textContent = isOpen ? "+" : "−";
-    });
-  });
-}
-
-function scrollToPendingProject(activeRoute) {
-  if (activeRoute !== "projects" || !pendingProjectTarget) return;
-
-  requestAnimationFrame(() => {
-    const target = document.getElementById(pendingProjectTarget);
-    target?.scrollIntoView({ behavior: "smooth", block: "start" });
-    target?.classList.add("is-targeted");
-    window.setTimeout(() => target?.classList.remove("is-targeted"), 1600);
-    pendingProjectTarget = null;
-  });
 }
 
 function renderProjectMedia(project) {
@@ -599,7 +526,8 @@ function renderProjectMedia(project) {
       return `
         <img
           src="${project.media}"
-          alt="${project.title}"
+          alt="${project.title} preview"
+          loading="lazy"
           class="project-image"
         />
       `;
