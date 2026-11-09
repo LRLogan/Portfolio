@@ -30,6 +30,7 @@ export const projectCategories = [
   }
 ];
 
+// Featured projects for intro page
 export const featuredProjectIds = ["Gizmo-Go-Kartz", "Wireframe-Heightmap-Visualizer", "LiDAR-Terrain-Pipeline"];
 
 export const projects = [
