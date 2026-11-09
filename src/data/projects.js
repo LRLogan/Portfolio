@@ -12,7 +12,7 @@ import wireframeIntroPic from "../media/WireframeVisIntroImg.png";
 export const projectCategories = [
   {
     id: "games",
-    title: "Game Development & Design",
+    title: "Game Design & Development",
     description: "Gameplay systems, team development, and playtesting",
     projectIds: ["Gizmo-Go-Kartz", "TMOTOFOG", "Crazy-Crops", "Fruit-Ninja"]
   },

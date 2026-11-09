@@ -212,7 +212,7 @@ function renderIntro(root) {
         <div class="project-preview-heading">
           <div>
             <span class="section-kicker">02 / Portfolio</span>
-            <h2 id="project-preview-title">Selected work</h2>
+            <h2 id="project-preview-title">Featured work</h2>
           </div>
           <a class="secondary-action" href="#projects">Browse all projects <span aria-hidden="true">↗</span></a>
         </div>
@@ -470,14 +470,17 @@ function renderProjectCard(project, isOpen) {
         <ul class="tag-list">
           ${project.tags.map((tag) => `<li>${tag}</li>`).join("")}
         </ul>
-        <button
-          class="project-toggle"
-          type="button"
-          aria-expanded="${isOpen}"
-          aria-controls="${project.id}-detail"
-        >
-          ${isOpen ? "Close case study" : "Read case study"}
-        </button>
+        <div class="project-card-actions">
+          <button
+            class="project-toggle"
+            type="button"
+            aria-expanded="${isOpen}"
+            aria-controls="${project.id}-detail"
+          >
+            ${isOpen ? "Close case study" : "Read case study"}
+          </button>
+          ${renderProjectLinks(project.links)}
+        </div>
       </div>
 
       <section class="project-detail" id="${project.id}-detail" aria-labelledby="${project.id}-process" ${isOpen ? "" : "hidden"}>
@@ -510,13 +513,19 @@ function renderProjectCard(project, isOpen) {
             </div>
           </details>
         ` : ""}
-        ${project.links.length ? `
-          <div class="project-links">
-            ${project.links.map((link) => `<a href="${link.href}" target="_blank" rel="noopener" class="basic-info-btn">${link.label} <span aria-hidden="true">↗</span></a>`).join("")}
-          </div>
-        ` : ""}
+        ${renderProjectLinks(project.links)}
       </section>
     </article>
+  `;
+}
+
+function renderProjectLinks(links) {
+  if (!links.length) return "";
+
+  return `
+    <div class="project-links">
+      ${links.map((link) => `<a href="${link.href}" target="_blank" rel="noopener" class="basic-info-btn">${link.label} <span aria-hidden="true">↗</span></a>`).join("")}
+    </div>
   `;
 }
 

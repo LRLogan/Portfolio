@@ -581,10 +581,11 @@ a {
 }
 
 .project-preview-copy {
+  --preview-padding: clamp(16px, 2.5vw, 28px);
   display: flex;
   flex: 1;
   flex-direction: column;
-  padding: clamp(16px, 2.5vw, 28px);
+  padding: var(--preview-padding);
 }
 
 .project-preview-copy h3 {
@@ -603,9 +604,10 @@ a {
   display: flex;
   justify-content: space-between;
   gap: 8px;
-  margin-top: auto;
-  padding-top: 14px;
+  margin: auto calc(-1 * var(--preview-padding)) calc(-1 * var(--preview-padding));
+  padding: 14px var(--preview-padding) var(--preview-padding);
   border-top: 1px solid var(--line);
+  background: linear-gradient(105deg, rgba(255, 140, 0, 0.28), rgba(255, 140, 0, 0.08) 62%, transparent);
   color: var(--accent);
   font-weight: 750;
 }
@@ -1261,6 +1263,7 @@ button.project-toggle:hover {
 .project-preview-card:focus-visible,
 .project-category-link:focus-visible,
 .project-toggle:focus-visible,
+.project-links a:focus-visible,
 .project-notes summary:focus-visible {
   outline: 2px solid var(--accent-2);
   outline-offset: 4px;
@@ -1346,8 +1349,15 @@ button.project-toggle:hover {
   margin-top: 0;
 }
 
-.project-toggle {
+.project-card-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
   margin-top: 18px;
+}
+
+.project-toggle {
   transition:
     border-color 180ms ease,
     background 180ms ease,
@@ -1473,9 +1483,19 @@ button.project-toggle:hover {
   grid-template-columns: repeat(auto-fit, minmax(140px, max-content));
 }
 
+.project-card-actions .project-links {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 .project-links a {
+  gap: 6px;
   color: var(--accent);
   font-weight: 800;
+}
+
+.project-links a:hover {
+  border-color: var(--accent-2);
 }
 
 .contact-layout {
